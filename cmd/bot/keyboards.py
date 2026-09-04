@@ -16,3 +16,12 @@ def wallet_detail(currency: str):
          InlineKeyboardButton("📤 转出", callback_data=f"send_{currency}")],
         [InlineKeyboardButton("🔙 返回", callback_data="main")]
     ])
+
+def format_transaction(tx: dict) -> str:
+    return (
+        f"┌─ 交易记录 ──────────\n"
+        f"│ 哈希: `{tx['hash'][:10]}...`\n"
+        f"│ 金额: {tx['amount']} {tx['coin']}\n"
+        f"│ 状态: {'✅ 成功' if tx['status'] else '⏳ 待确认'}\n"
+        f"└─────────────────────"
+    )
